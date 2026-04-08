@@ -1,0 +1,23 @@
+/* Start global rules */
+:root {
+    --primary-color: #2771e4;
+    --sidebar-color: #eff4f6;
+    --background-color: #f6f9fb;
+    --category-color: #dbe2f9;
+}
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+a {
+    text-decoration: none;
+}
+/* End global rules */

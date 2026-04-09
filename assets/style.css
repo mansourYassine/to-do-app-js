@@ -1,7 +1,8 @@
 /* Start global rules */
 :root {
     --primary-color: #2771e4;
-    --sidebar-color: #eff4f6;
+    --secondary-color: #8FB8EE;
+    --grey-color: #eff4f6;
     --background-color: #f6f9fb;
     --category-color: #dbe2f9;
 }
@@ -21,3 +22,120 @@ a {
     text-decoration: none;
 }
 /* End global rules */
+.page {
+    display: flex;
+    background-color: var(--background-color);
+    height: 100vh;
+}
+/* Start Sidebar */
+aside {
+    flex: 1;
+    background-color: #dcdfe4;
+    padding: 12px;
+    position: relative;
+}
+aside h2 {
+    margin: 50px 0 30px 0;
+    font-size: 25px;
+    font-weight: 700;
+    /* text-align: center; */
+    color: #343434;
+}
+aside ul {
+    position: relative;
+    padding-bottom: 1px;
+}
+aside ul::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: 0;
+    background-color: #343434;
+}
+aside .category {
+    font-size: 17px;
+    border-radius: 7px;
+    color: #4f5559;
+    padding: 10px;
+    margin: 10px 0px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+aside .category:hover {
+    background-color: #f6f9fb;
+    color: var(--primary-color);
+}
+aside .category.active {
+    background-color: #f6f9fb;
+    color: var(--primary-color);
+}
+aside button.add-category {
+    display: block;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px 15px 15px 30px;
+    font-weight: 700;
+    font-size: 15px;
+    width: 150px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+aside button.add-category::before {
+    content: "\2b";
+    position: absolute;
+    font-family: "Font Awesome 7 Free";
+    font-weight: 900;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+}
+/* End Sidebar */
+/* Start Main */
+main {
+    flex: 5;
+}
+main .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--secondary-color);
+}
+main .head h1 {
+    color: #343434;
+    margin: 20px 15px;
+}
+main .head .search {
+    margin-right: 40px;
+    position: relative;
+    height: fit-content;
+}
+main .head .search::before {
+    content: "\f002";
+    font-family: "Font Awesome 7 Free";
+    font-weight: 600;
+    font-size: 12px;
+    color: grey;
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+main .head div input[type="search"] {
+    padding: 10px 10px 10px 35px;
+    width: 300px;
+    border-radius: 17px;
+    border: 0px;
+    background-color: var(--grey-color);
+    position: relative;
+}
+main .head div input[type="search"]:focus {
+    outline: none;
+}
+/* End Main */

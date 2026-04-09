@@ -11,21 +11,21 @@
     <body>
         <div class="page">
             <aside>
-                <div>
-                    <a class="all-tasks">All Tasks</a>
-                </div>
-                <h3>categories</h3>
+                <h2>Categories</h2>
                 <ul class="categories">
-                    <li><a>Work</a></li>
-                    <li><a>Personnel</a></li>
-                    <li><a>Shopping</a></li>
+                    <li class="category active">Work</li>
+                    <li class="category">Personnel</li>
+                    <li class="category">Shopping</li>
                 </ul>
-                <button class="add-category"><i class="fa-solid fa-plus"></i>Add Category</button>
+                <div class="category all-tasks"><a>All Tasks</a></div>
+                <button class="add-category">Add Category</button>
             </aside>
             <main>
                 <div class="head">
                     <h1>TaskFlow</h1>
-                    <input type="search" placeholder="Search">
+                    <div class="search">
+                        <input type="search" placeholder="Search Tasks...">
+                    </div>
                 </div>
                 <button class="add-task"><i class="fa-solid fa-plus"></i>Add Task</button>
                 <div class="tasks">

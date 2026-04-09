@@ -7,6 +7,8 @@
         <link rel="stylesheet" href="assets/style.css">
         <!-- Font awsome -->
         <link rel="stylesheet" href="assets/all.min.css">
+        <!-- Hide firefox favicon error -->
+        <link rel="shortcut icon" href="#">
     </head>
     <body>
         <div class="page">
@@ -17,12 +19,16 @@
                     <li class="category">Personnel</li>
                     <li class="category">Shopping</li>
                 </ul>
-                <div class="category all-tasks"><a>All Tasks</a></div>
+                <div class="category all-tasks">All Tasks</div>
+                <div class="category completed">Completed</div>
                 <button class="add-category">Add Category</button>
             </aside>
             <main>
                 <div class="head">
-                    <h1>TaskFlow</h1>
+                    <div>
+                        <i class="fa-solid fa-bars"></i>
+                        <h1>TaskFlow</h1>
+                    </div>
                     <div class="search">
                         <input type="search" placeholder="Search Tasks...">
                     </div>

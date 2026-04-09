@@ -34,6 +34,9 @@ aside {
     padding: 12px;
     position: relative;
 }
+aside.hide {
+    display: none;
+}
 aside h2 {
     margin: 50px 0 30px 0;
     font-size: 25px;
@@ -105,6 +108,23 @@ main .head {
     justify-content: space-between;
     align-items: center;
     background-color: var(--secondary-color);
+}
+main .head > div:first-of-type {
+    display: flex;
+    align-items: center;
+    /* margin: 0px 20px; */
+}
+main .head > div:first-of-type i {
+    display: none;
+    font-size: 29px;
+    color: black;
+    margin: 0px 5px 0px 15px;
+    cursor: pointer;
+}
+@media (max-width: 992px) {
+    main .head > div:first-of-type i {
+        display: inline;
+    }
 }
 main .head h1 {
     color: #343434;

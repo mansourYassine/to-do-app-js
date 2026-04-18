@@ -131,28 +131,29 @@ aside button.add-category::before {
 }
 /* End Sidebar */
 /* Start Main */
-main {
+.right-page {
     flex: 5;
 }
-main .head {
+/* Start Head */
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: var(--secondary-color);
 }
 @media (max-width: 576px) {
-    main .head {
+    header {
         flex-direction: column;
         align-items: initial;
         padding-bottom: 10px;
     }
 }
-main .head > div:first-of-type {
+header > div:first-of-type {
     display: flex;
     align-items: center;
     /* margin: 0px 20px; */
 }
-main .head > div:first-of-type i {
+header > div:first-of-type i {
     display: none;
     font-size: 29px;
     color: black;
@@ -160,33 +161,33 @@ main .head > div:first-of-type i {
     cursor: pointer;
 }
 @media (max-width: 992px) {
-    main .head > div:first-of-type i {
+    header > div:first-of-type i {
         display: inline;
     }
 }
-main .head h1 {
+header h1 {
     color: #343434;
     margin: 20px 15px;
 }
 @media (max-width: 576px) {
-    main .head h1 {
+    header h1 {
         margin: 10px 15px;
     }
 }
-main .head .search {
+header .search {
     margin-right: 40px;
     position: relative;
     height: fit-content;
 }
 @media (max-width: 576px) {
-    main .head .search {
+    header .search {
         margin-right: 0;
         position: relative;
         height: fit-content;
         align-self: center;
     }
 }
-main .head .search::before {
+header .search::before {
     content: "\f002";
     font-family: "Font Awesome 7 Free";
     font-weight: 600;
@@ -198,7 +199,7 @@ main .head .search::before {
     transform: translateY(-50%);
     z-index: 1;
 }
-main .head div input[type="search"] {
+header div input[type="search"] {
     padding: 10px 10px 10px 35px;
     width: 300px;
     border-radius: 17px;
@@ -206,7 +207,9 @@ main .head div input[type="search"] {
     background-color: var(--grey-color);
     position: relative;
 }
-main .head div input[type="search"]:focus {
+header div input[type="search"]:focus {
     outline: none;
 }
+/* End Head */
+/* Start  */
 /* End Main */

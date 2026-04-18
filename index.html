@@ -23,8 +23,8 @@
                 <div class="category completed">Completed</div>
                 <button class="add-category"><span>Add Category</span></button>
             </aside>
-            <main>
-                <div class="head">
+            <div class="right-page">
+                <header>
                     <div>
                         <i class="fa-solid fa-bars"></i>
                         <h1>TaskFlow</h1>
@@ -32,37 +32,39 @@
                     <div class="search">
                         <input type="search" placeholder="Search Tasks...">
                     </div>
-                </div>
-                <button class="add-task"><i class="fa-solid fa-plus"></i>Add Task</button>
-                <div class="tasks">
-                    <div class="all-tasks">
-                        <div class="task">
-                            <input type="checkbox">
-                            <div class="info">
-                                <p>Go to the Gym</p>
-                                <span class="category">Personnel</span>
+                </header>
+                <main>
+                    <button class="add-task"><i class="fa-solid fa-plus"></i>Add Task</button>
+                    <div class="tasks">
+                        <div class="all-tasks">
+                            <div class="task">
+                                <input type="checkbox">
+                                <div class="info">
+                                    <p>Go to the Gym</p>
+                                    <span class="category">Personnel</span>
+                                </div>
+                            </div>
+                            <div class="task">
+                                <input type="checkbox">
+                                <div class="info">
+                                    <p>Buy vegitables</p>
+                                    <span class="category">House</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="task">
-                            <input type="checkbox">
-                            <div class="info">
-                                <p>Buy vegitables</p>
-                                <span class="category">House</span>
+                        <div class="completed-tasks">
+                            <h3>Completed</h3>
+                            <div class="task completed">
+                                <input type="checkbox" checked>
+                                <div class="info">
+                                    <p>Reak a book</p>
+                                    <span class="category">Personnel</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="completed-tasks">
-                        <h3>Completed</h3>
-                        <div class="task completed">
-                            <input type="checkbox" checked>
-                            <div class="info">
-                                <p>Reak a book</p>
-                                <span class="category">Personnel</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </main>
+                </main>
+            </div>
         </div>
         <script src="assets/main.js"></script>
     </body>

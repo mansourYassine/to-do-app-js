@@ -9,7 +9,7 @@ mediaQuery.addEventListener("change", function (e) {
     }
 });
 
-let sidebarToggle = document.querySelector("main .head > div:first-of-type i");
+let sidebarToggle = document.querySelector("header > div:first-of-type i");
 sidebarToggle.addEventListener("click", function () {
     sidebar.classList.toggle("hide");
 });

@@ -22,6 +22,30 @@ a {
     text-decoration: none;
 }
 /* End global rules */
+/* Start Components */
+.btn-add {
+    display: block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px 15px 15px 30px;
+    font-weight: 700;
+    font-size: 15px;
+    width: 150px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+.btn-add::before {
+    content: "\2b";
+    position: absolute;
+    font-family: "Font Awesome 7 Free";
+    font-weight: 900;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+}
+/* End Components */
+/* Start Page */
 .page {
     display: flex;
     background-color: var(--background-color);
@@ -81,20 +105,10 @@ aside .category.active {
     color: var(--primary-color);
 }
 aside button.add-category {
-    display: block;
     position: absolute;
     bottom: 50px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: var(--primary-color);
-    color: white;
-    padding: 15px 15px 15px 30px;
-    font-weight: 700;
-    font-size: 15px;
-    width: 150px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
 }
 @media (max-width: 768px) {
     aside button.add-category {
@@ -114,15 +128,6 @@ aside button.add-category {
         display: none;
     }
 }
-aside button.add-category::before {
-    content: "\2b";
-    position: absolute;
-    font-family: "Font Awesome 7 Free";
-    font-weight: 900;
-    top: 50%;
-    left: 10px;
-    transform: translateY(-50%);
-}
 @media (max-width: 576px) {
     aside button.add-category::before {
         left: 50%;
@@ -130,11 +135,11 @@ aside button.add-category::before {
     }
 }
 /* End Sidebar */
-/* Start Main */
+/* Start right page */
 .right-page {
     flex: 5;
 }
-/* Start Head */
+/* Start Header */
 header {
     display: flex;
     justify-content: space-between;
@@ -210,6 +215,11 @@ header div input[type="search"] {
 header div input[type="search"]:focus {
     outline: none;
 }
-/* End Head */
-/* Start  */
+/* End Header */
+/* Start Main */
+main .add-task {
+    position: relative;
+}
 /* End Main */
+/* End right page */
+/* End Page */

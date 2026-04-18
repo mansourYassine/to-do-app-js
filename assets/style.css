@@ -24,6 +24,7 @@ a {
 /* End global rules */
 /* Start Components */
 .btn-add {
+    position: relative;
     display: block;
     background-color: var(--primary-color);
     color: white;

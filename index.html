@@ -7,48 +7,66 @@
         <link rel="stylesheet" href="assets/style.css">
         <!-- Font awsome -->
         <link rel="stylesheet" href="assets/all.min.css">
+        <!-- Hide firefox favicon error -->
+        <link rel="shortcut icon" href="#">
     </head>
     <body>
         <div class="page">
             <aside>
-                <div>
-                    <a class="all-tasks">All Tasks</a>
-                </div>
-                <h3>categories</h3>
+                <h2>Categories</h2>
                 <ul class="categories">
-                    <li><a>Work</a></li>
-                    <li><a>Personnel</a></li>
-                    <li><a>Shopping</a></li>
+                    <li class="category">Work</li>
+                    <li class="category">Personnel</li>
+                    <li class="category">Shopping</li>
                 </ul>
-                <button class="add-category"><i class="fa-solid fa-plus"></i>Add Category</button>
+                <div class="category all-tasks active">All Tasks</div>
+                <button class="btn-add add-category"><span>Add Category</span></button>
             </aside>
-            <main>
-                <div class="head">
-                    <h1>TaskFlow</h1>
-                    <input type="search" placeholder="Search">
-                </div>
-                <button class="add-task"><i class="fa-solid fa-plus"></i>Add Task</button>
-                <div class="tasks">
-                    <div class="task">
-                        <input type="checkbox">
-                        <p>Go to the Gym</p>
-                        <span class="category">Personnel</span>
+            <div class="right-page">
+                <header>
+                    <div>
+                        <i class="fa-solid fa-bars"></i>
+                        <h1>TaskFlow</h1>
                     </div>
-                    <div class="task">
-                        <input type="checkbox">
-                        <p>Buy vegitables</p>
-                        <span class="category">House</span>
+                    <div class="search">
+                        <input type="search" placeholder="Search Tasks...">
                     </div>
-                    <div class="completed-tasks">
-                        <h3>Completed</h3>
-                        <div class="task completed">
-                            <input type="checkbox" checked>
-                            <p>Reak a book</p>
-                            <span class="category">Personnel</span>
+                </header>
+                <main>
+                    <div class="add-task">
+                        <button class="btn-add"><span>Add Task</span></button>
+                    </div>
+                    <div class="tasks">
+                        <div class="all-tasks">
+                            <h3>All Tasks</h3>
+                            <div class="task">
+                                <input type="checkbox">
+                                <div class="info">
+                                    <p>Go to the Gym</p>
+                                    <span class="category">Personnel</span>
+                                </div>
+                            </div>
+                            <div class="task">
+                                <input type="checkbox">
+                                <div class="info">
+                                    <p>Buy vegitables</p>
+                                    <span class="category">House</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="completed-tasks">
+                            <h3>Completed</h3>
+                            <div class="task completed">
+                                <input type="checkbox" checked>
+                                <div class="info">
+                                    <p>Reak a book</p>
+                                    <span class="category">Personnel</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </main>
+                </main>
+            </div>
         </div>
         <script src="assets/main.js"></script>
     </body>

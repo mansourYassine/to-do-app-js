@@ -22,7 +22,9 @@ a {
     text-decoration: none;
 }
 /* End global rules */
+
 /* Start Components */
+/* Start button */
 .btn-add {
     position: relative;
     display: block;
@@ -45,7 +47,38 @@ a {
     left: 10px;
     transform: translateY(-50%);
 }
+/* End button */
+/* Start Task */
+.task {
+    display: flex;
+    background-color: #ededed;
+    margin-bottom: 15px;
+    padding: 15px 0;
+    border-radius: 8px;
+    background-color: #e6eaeb94;
+}
+.task input {
+    padding: 50px;
+    margin: 0 15px;
+    width: 20px;
+}
+.task .info p {
+    font-size: 19px;
+    font-weight: 400;
+    margin: 0px;
+}
+.task .info span {
+    display: inline-block;
+    background-color: #dbe2f9;
+    padding: 7px;
+    border-radius: 15px;
+    font-size: 13px;
+    position: relative;
+    top: 7px;
+}
+/* End Task */
 /* End Components */
+
 /* Start Page */
 .page {
     display: flex;

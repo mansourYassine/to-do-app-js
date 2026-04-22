@@ -17,6 +17,11 @@ newTaskBtn.addEventListener("click", () => {
 
 addTaskFormBtn.addEventListener("click", () => {
     addTaskForm.style = "display: none";
+    let taskName = document.getElementById("task-name");
+    let taskCategory = document.getElementById("task-category");
+
+    tasks.push({name: taskName.value, category: taskCategory.value, checked: false});
+    renderTasks();
 });
 
 cancelTaskFormBtn.addEventListener("click", () => {

@@ -62,6 +62,10 @@ a {
     margin: 0 15px;
     width: 20px;
 }
+.task input:checked ~ .info p {
+    text-decoration: line-through;
+    color: #888;
+}
 .task .info p {
     font-size: 19px;
     font-weight: 400;

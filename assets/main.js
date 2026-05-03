@@ -1,8 +1,4 @@
-let tasks = [
-    {id: 1, name: "Eat Breakfast", category: "Health", checked: false},
-    {id: 2, name: "Go for a walk", category: "Fitness", checked: false},
-    {id: 3, name: "Read a book", category: "Education", checked: true},
-];
+let tasks = fetchTasksFromLocal();
 renderTasks();
 
 // Add new task
@@ -21,6 +17,7 @@ addTaskFormBtn.addEventListener("click", () => {
     addTaskForm.style = "display: none";
 
     tasks.push({id: Date.now(), name: taskName.value, category: taskCategory.value, checked: false});
+    storeTasksInLocal();
     taskName.value = "";
     renderTasks();
 });
@@ -69,9 +66,11 @@ function renderTasks() {
                     if (ele.checked) {
                         ele.checked = false;
                         renderTasks();
+                        storeTasksInLocal();
                     } else {
                         ele.checked = true;
                         renderTasks();
+                        storeTasksInLocal();
                     }
                 } 
             });
@@ -115,3 +114,15 @@ let sidebarToggle = document.querySelector("header > div:first-of-type i");
 sidebarToggle.addEventListener("click", function () {
     sidebar.classList.toggle("hide");
 });
+
+// Fetch Tasks from the local storage
+function fetchTasksFromLocal() {
+    let jsonTasks = window.localStorage.getItem("tasks");
+    let objectTasks = JSON.parse(jsonTasks);
+    return objectTasks;
+}
+
+// Store tasks in the Local Storage As Json
+function storeTasksInLocal() {
+    window.localStorage.setItem("tasks", JSON.stringify(tasks));
+}

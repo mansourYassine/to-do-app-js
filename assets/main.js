@@ -1,7 +1,7 @@
 let tasks = [
-    {name: "Eat Breakfast", category: "Health", checked: false},
-    {name: "Go for a walk", category: "Fitness", checked: false},
-    {name: "Read a book", category: "Education", checked: true},
+    {id: 1, name: "Eat Breakfast", category: "Health", checked: false},
+    {id: 2, name: "Go for a walk", category: "Fitness", checked: false},
+    {id: 3, name: "Read a book", category: "Education", checked: true},
 ];
 renderTasks();
 
@@ -20,7 +20,7 @@ addTaskFormBtn.addEventListener("click", () => {
     let taskName = document.getElementById("task-name");
     let taskCategory = document.getElementById("task-category");
 
-    tasks.push({name: taskName.value, category: taskCategory.value, checked: false});
+    tasks.push({id: Date.now(), name: taskName.value, category: taskCategory.value, checked: false});
     renderTasks();
 });
 
@@ -28,7 +28,7 @@ cancelTaskFormBtn.addEventListener("click", () => {
     addTaskForm.style = "display: none";
 });
 
-// Display Tasks
+// Display Tasks from the array
 function renderTasks() {
     let uncompletedTasks = document.querySelector("main > .tasks > .uncompleted-tasks");
     let completedTasks = document.querySelector("main > .tasks > .completed-tasks");
@@ -48,6 +48,7 @@ function renderTasks() {
     for (let task of tasks) {
         let divContainer = document.createElement("div");
         divContainer.classList.add("task");
+        divContainer.setAttribute("data-id", `${task.id}`)
     
         let checkbox = document.createElement("input");
         checkbox.setAttribute("type", "checkbox");
@@ -56,6 +57,24 @@ function renderTasks() {
         }
         divContainer.appendChild(checkbox);
     
+        checkbox.addEventListener("change", function (e) {
+            console.log(e.target);
+            let idTask = e.target.parentElement.getAttribute("data-id");
+            console.log(idTask)
+            tasks.forEach(function (ele) {
+                if (ele.id == idTask) {
+                    console.log(`clicked on Task is ${ele.name}`);
+                    if (ele.checked) {
+                        ele.checked = false;
+                        renderTasks();
+                    } else {
+                        ele.checked = true;
+                        renderTasks();
+                    }
+                } 
+            });
+        });
+
         let infoDiv = document.createElement("div");
         infoDiv.classList.add("info");
         divContainer.appendChild(infoDiv);
@@ -75,7 +94,6 @@ function renderTasks() {
             divContainer.classList.add("completed");
             completedTasks.appendChild(divContainer);
         }
-
     }
 }
 

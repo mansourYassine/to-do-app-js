@@ -1,5 +1,8 @@
-let tasks = fetchTasksFromLocal();
-renderTasks();
+let tasks = fetchTasksFromLocal() ?? [];
+
+if (tasks.length !== 0) {
+    renderTasks();
+}
 
 // Add new task
 let newTaskBtn = document.querySelector("main button.new-task");

@@ -10,6 +10,8 @@ let newTaskBtn = document.querySelector("main button.new-task");
 let addTaskForm = document.querySelector(".add-form");
 let addTaskFormBtn = document.querySelector(".add-form .content > .buttons .add");
 let cancelTaskFormBtn = document.querySelector(".add-form .content > .buttons .cancel");
+let taskName = document.getElementById("task-name");
+let taskCategory = document.getElementById("task-category");
 
 newTaskBtn.addEventListener("click", () => {
     addTaskForm.style = "display: block";
@@ -17,14 +19,14 @@ newTaskBtn.addEventListener("click", () => {
 
 addTaskFormBtn.addEventListener("click", () => {
     addTaskForm.style = "display: none";
-    let taskName = document.getElementById("task-name");
-    let taskCategory = document.getElementById("task-category");
 
     tasks.push({id: Date.now(), name: taskName.value, category: taskCategory.value, checked: false});
+    taskName.value = "";
     renderTasks();
 });
 
 cancelTaskFormBtn.addEventListener("click", () => {
+    taskName.value = "";
     addTaskForm.style = "display: none";
 });
 

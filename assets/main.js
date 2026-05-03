@@ -32,20 +32,11 @@ cancelTaskFormBtn.addEventListener("click", () => {
 
 // Display Tasks from the array
 function renderTasks() {
-    let uncompletedTasks = document.querySelector("main > .tasks > .uncompleted-tasks");
-    let completedTasks = document.querySelector("main > .tasks > .completed-tasks");
+    let uncompletedTasks = document.querySelector("main > .tasks > .uncompleted-tasks > .list");
+    let completedTasks = document.querySelector("main > .tasks > .completed-tasks > .list");
 
     uncompletedTasks.innerHTML = "";
-    completedTasks.innerHTML = "";
-
-    let uncompletedTitle = document.createElement("h3");
-    uncompletedTitle.textContent = "All Tasks";
-    uncompletedTasks.appendChild(uncompletedTitle);
-
-    let completedTitle = document.createElement("h3");
-    completedTitle.textContent = "Completed Tasks";
-    completedTasks.appendChild(completedTitle);
-    
+    completedTasks.innerHTML = "";    
 
     for (let task of tasks) {
         let divContainer = document.createElement("div");

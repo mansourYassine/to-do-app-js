@@ -60,12 +60,9 @@ function renderTasks() {
         divContainer.appendChild(checkbox);
     
         checkbox.addEventListener("change", function (e) {
-            console.log(e.target);
             let idTask = e.target.parentElement.getAttribute("data-id");
-            console.log(idTask)
             tasks.forEach(function (ele) {
                 if (ele.id == idTask) {
-                    console.log(`clicked on Task is ${ele.name}`);
                     if (ele.checked) {
                         ele.checked = false;
                         renderTasks();

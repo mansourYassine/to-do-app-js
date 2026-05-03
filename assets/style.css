@@ -1,7 +1,7 @@
 /* Start global rules */
 :root {
     --primary-color: #2771e4;
-    --secondary-color: #8FB8EE;
+    --secondary-color: #8fb8ee;
     --grey-color: #eff4f6;
     --background-color: #f6f9fb;
     --category-color: #dbe2f9;
@@ -12,6 +12,7 @@
 body {
     margin: 0;
     padding: 0;
+    font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 ul {
     list-style: none;
@@ -62,6 +63,10 @@ a {
     margin: 0 15px;
     width: 20px;
 }
+.task input:checked ~ .info p {
+    text-decoration: line-through;
+    color: #888;
+}
 .task .info p {
     font-size: 19px;
     font-weight: 400;
@@ -77,6 +82,83 @@ a {
     top: 7px;
 }
 /* End Task */
+/* Start add task window */
+.add-form {
+    display: none;
+    position: absolute;
+    background-color: rgba(190, 190, 190, 0.667);
+    backdrop-filter: blur(2px);
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+}
+.add-form .content {
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    padding: 15px 30px;
+    border-radius: 10px;
+}
+@media (max-width: 576px) {
+    .add-form .content {
+        width: 350px;
+        padding: 15px 20px;
+    }
+}
+.add-form .content h3 {
+    text-align: center;
+    margin: 0 0 15px 0;
+    font-size: 25px;
+}
+.add-form .content > div:not(:last-of-type) {
+    margin-bottom: 20px;
+}
+.add-form .content > div label {
+    display: inline-block;
+    width: 80px;
+    font-size: 17px;
+}
+.add-form .content > div > input[type="text"] {
+    padding: 10px 10px 10px 10px;
+    width: 300px;
+    border-radius: 10px;
+    border: 0px;
+    background-color: var(--grey-color);
+}
+@media (max-width: 576px) {
+    .add-form .content > div > input[type="text"] {
+        margin-top: 10px;
+    }
+}
+.add-form .content > div > select {
+    width: 150px;
+    padding: 10px 10px 10px 10px;
+    border-radius: 10px;
+    border: 0px;
+}
+.add-form .content > div > input[type="text"]:focus {
+    outline: none;
+}
+.add-form .content .buttons {
+    display: flex;
+    justify-content: center;
+    column-gap: 15px;
+}
+.add-form .content button {
+    display: inline-block;
+    width: 120px;
+    padding: 12px 12px 12px 30px;
+}
+.add-form .content button.cancel {
+    background-color: rgb(254, 82, 82);
+}
+.add-form .content button.cancel::before {
+    content: "\f057";
+}
+/* End add task window */
 /* End Components */
 
 /* Start Page */
@@ -84,6 +166,7 @@ a {
     display: flex;
     background-color: var(--background-color);
     height: 100vh;
+    position: relative;
 }
 /* Start Sidebar */
 aside {
@@ -128,7 +211,9 @@ aside .category {
     padding: 10px;
     margin: 10px 0px;
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
+    transition:
+        background-color 0.3s,
+        color 0.3s;
 }
 aside .category:hover {
     background-color: #f6f9fb;

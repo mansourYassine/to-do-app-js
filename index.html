@@ -4,11 +4,18 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-        <link rel="stylesheet" href="assets/style.css">
+        <link rel="stylesheet" href="assets/style.css" />
         <!-- Font awsome -->
-        <link rel="stylesheet" href="assets/all.min.css">
+        <link rel="stylesheet" href="assets/all.min.css" />
+        <!-- Font familly -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet"
+        />
         <!-- Hide firefox favicon error -->
-        <link rel="shortcut icon" href="#">
+        <link rel="shortcut icon" href="#" />
     </head>
     <body>
         <div class="page">
@@ -20,7 +27,9 @@
                     <li class="category">Shopping</li>
                 </ul>
                 <div class="category all-tasks active">All Tasks</div>
-                <button class="btn-add add-category"><span>Add Category</span></button>
+                <button class="btn-add add-category">
+                    <span>Add Category</span>
+                </button>
             </aside>
             <div class="right-page">
                 <header>
@@ -29,43 +38,57 @@
                         <h1>TaskFlow</h1>
                     </div>
                     <div class="search">
-                        <input type="search" placeholder="Search Tasks...">
+                        <input type="search" placeholder="Search Tasks..." />
                     </div>
                 </header>
                 <main>
                     <div class="add-task">
-                        <button class="btn-add"><span>Add Task</span></button>
+                        <button class="btn-add new-task">
+                            <span>New Task</span>
+                        </button>
                     </div>
                     <div class="tasks">
-                        <div class="all-tasks">
+                        <div class="uncompleted-tasks">
                             <h3>All Tasks</h3>
-                            <div class="task">
-                                <input type="checkbox">
-                                <div class="info">
-                                    <p>Go to the Gym</p>
-                                    <span class="category">Personnel</span>
-                                </div>
-                            </div>
-                            <div class="task">
-                                <input type="checkbox">
-                                <div class="info">
-                                    <p>Buy vegitables</p>
-                                    <span class="category">House</span>
+                            <div class="list">
+                                <div class="task" style="display: none">
+                                    <input type="checkbox" />
+                                    <div class="info">
+                                        <p>Test</p>
+                                        <span class="category">test</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="completed-tasks">
-                            <h3>Completed</h3>
-                            <div class="task completed">
-                                <input type="checkbox" checked>
-                                <div class="info">
-                                    <p>Reak a book</p>
-                                    <span class="category">Personnel</span>
-                                </div>
-                            </div>
+                            <h3>Completed Tasks</h3>
+                            <div class="list"></div>
                         </div>
                     </div>
                 </main>
+            </div>
+            <div class="add-form">
+                <div class="content">
+                    <h3>New Task</h3>
+                    <div class="task-name">
+                        <label for="task-name">Name :</label>
+                        <input
+                            type="text"
+                            id="task-name"
+                            placeholder="Task Name"
+                        />
+                    </div>
+                    <div class="task-category">
+                        <label for="task-category">Category :</label>
+                        <select id="task-category">
+                            <option value="work">Work</option>
+                        </select>
+                    </div>
+                    <div class="buttons">
+                        <button class="btn-add add">Add Task</button>
+                        <button class="btn-add cancel">Cancel</button>
+                    </div>
+                </div>
             </div>
         </div>
         <script src="assets/main.js"></script>

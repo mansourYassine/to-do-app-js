@@ -16,7 +16,7 @@ newTaskBtn.addEventListener("click", () => {
 addTaskFormBtn.addEventListener("click", () => {
     addTaskForm.style = "display: none";
 
-    tasks.push({id: Date.now(), name: taskName.value, category: taskCategory.value, checked: false});
+    tasks.unshift({id: Date.now(), name: taskName.value, category: taskCategory.value, checked: false});
     storeTasksInLocal();
     taskName.value = "";
     renderTasks();

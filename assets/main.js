@@ -1,5 +1,6 @@
 let tasks = fetchTasksFromLocal() ?? [];
 let categories = fetchCategoriesFromLocal() ?? [];
+let currentCategory = 'all';
 
 if (tasks.length !== 0) {
     renderTasks();
@@ -21,6 +22,7 @@ newTaskBtn.addEventListener("click", () => {
     addTaskForm.style = "display: block";
 
     // load categories to the select
+    taskCategory.innerHTML = `<option value="">---Choose a category---</option>`;
     for (const category of categories) {
         let option = document.createElement("option");
         option.setAttribute("value", category);
@@ -52,9 +54,15 @@ function renderTasks() {
     let completedTasks = document.querySelector("main > .tasks > .completed-tasks > .list");
 
     uncompletedTasks.innerHTML = "";
-    completedTasks.innerHTML = "";    
+    completedTasks.innerHTML = "";
 
-    for (let task of tasks) {
+    let tasksToRender = tasks;
+    
+    if (currentCategory !== 'all') {
+        tasksToRender = tasks.filter(task => task.category === currentCategory);
+    }
+
+    for (let task of tasksToRender) {
         let divContainer = document.createElement("div");
         divContainer.classList.add("task");
         divContainer.setAttribute("data-id", `${task.id}`)
@@ -91,10 +99,12 @@ function renderTasks() {
         p.textContent = task.name;
         infoDiv.appendChild(p);
         
-        let span = document.createElement("span");
-        span.classList.add("category");
-        span.textContent = task.category;
-        infoDiv.appendChild(span);
+        if (task.category.length !== 0) {
+            let span = document.createElement("span");
+            span.classList.add("category");
+            span.textContent = task.category;
+            infoDiv.appendChild(span);
+        }
 
         if (task.checked === false) {
             uncompletedTasks.appendChild(divContainer);

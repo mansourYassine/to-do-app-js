@@ -5,6 +5,10 @@ if (tasks.length !== 0) {
     renderTasks();
 }
 
+if (categories.length !== 0) {
+    renderCategories();
+}
+
 // Add new task
 let newTaskBtn = document.querySelector("main button.new-task");
 let addTaskForm = document.querySelector(".add-task-form");
@@ -117,6 +121,7 @@ addCategoryFormBtn.addEventListener("click", () => {
     if (categoryName.value.length !== 0) {
         addCategoryForm.style = "display: none";
         categories.push(categoryName.value);
+        renderCategories();
         storeCategoriesInLocal();
         categoryName.value = "";
     }
@@ -137,6 +142,19 @@ function fetchCategoriesFromLocal() {
 // Store tasks in the Local Storage As Json
 function storeCategoriesInLocal() {
     window.localStorage.setItem("categories", JSON.stringify(categories));
+}
+
+function renderCategories() {
+    let categoriesContainer = document.querySelector("aside ul.categories");
+
+    categoriesContainer.innerHTML = "";
+    
+    for (let category of categories) {
+        let categoryLi = document.createElement("li");
+        categoryLi.classList.add("category");
+        categoryLi.textContent = category;
+        categoriesContainer.appendChild(categoryLi);
+    }
 }
 
 // Sidebar Toogle button 

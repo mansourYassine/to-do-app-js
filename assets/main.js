@@ -6,9 +6,9 @@ if (tasks.length !== 0) {
 
 // Add new task
 let newTaskBtn = document.querySelector("main button.new-task");
-let addTaskForm = document.querySelector(".add-form");
-let addTaskFormBtn = document.querySelector(".add-form .content > .buttons .add");
-let cancelTaskFormBtn = document.querySelector(".add-form .content > .buttons .cancel");
+let addTaskForm = document.querySelector(".add-task-form");
+let addTaskFormBtn = document.querySelector(".add-task-form .content > .buttons .add");
+let cancelTaskFormBtn = document.querySelector(".add-task-form .content > .buttons .cancel");
 let taskName = document.getElementById("task-name");
 let taskCategory = document.getElementById("task-category");
 

@@ -83,7 +83,7 @@ a {
 }
 /* End Task */
 /* Start add task window */
-.add-form {
+.add-task-form {
     display: none;
     position: absolute;
     background-color: rgba(190, 190, 190, 0.667);
@@ -92,7 +92,7 @@ a {
     height: 100vh;
     z-index: 100;
 }
-.add-form .content {
+.add-task-form .content {
     background-color: white;
     position: absolute;
     top: 50%;
@@ -103,25 +103,25 @@ a {
     border-radius: 10px;
 }
 @media (max-width: 576px) {
-    .add-form .content {
+    .add-task-form .content {
         width: 350px;
         padding: 15px 20px;
     }
 }
-.add-form .content h3 {
+.add-task-form .content h3 {
     text-align: center;
     margin: 0 0 15px 0;
     font-size: 25px;
 }
-.add-form .content > div:not(:last-of-type) {
+.add-task-form .content > div:not(:last-of-type) {
     margin-bottom: 20px;
 }
-.add-form .content > div label {
+.add-task-form .content > div label {
     display: inline-block;
     width: 80px;
     font-size: 17px;
 }
-.add-form .content > div > input[type="text"] {
+.add-task-form .content > div > input[type="text"] {
     padding: 10px 10px 10px 10px;
     width: 300px;
     border-radius: 10px;
@@ -129,33 +129,33 @@ a {
     background-color: var(--grey-color);
 }
 @media (max-width: 576px) {
-    .add-form .content > div > input[type="text"] {
+    .add-task-form .content > div > input[type="text"] {
         margin-top: 10px;
     }
 }
-.add-form .content > div > select {
+.add-task-form .content > div > select {
     width: 150px;
     padding: 10px 10px 10px 10px;
     border-radius: 10px;
     border: 0px;
 }
-.add-form .content > div > input[type="text"]:focus {
+.add-task-form .content > div > input[type="text"]:focus {
     outline: none;
 }
-.add-form .content .buttons {
+.add-task-form .content .buttons {
     display: flex;
     justify-content: center;
     column-gap: 15px;
 }
-.add-form .content button {
+.add-task-form .content button {
     display: inline-block;
     width: 120px;
     padding: 12px 12px 12px 30px;
 }
-.add-form .content button.cancel {
+.add-task-form .content button.cancel {
     background-color: rgb(254, 82, 82);
 }
-.add-form .content button.cancel::before {
+.add-task-form .content button.cancel::before {
     content: "\f057";
 }
 /* End add task window */

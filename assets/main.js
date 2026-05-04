@@ -25,7 +25,6 @@ newTaskBtn.addEventListener("click", () => {
         let option = document.createElement("option");
         option.setAttribute("value", category);
         option.innerHTML = category;
-        console.log(option);
         taskCategory.appendChild(option);
     }
 });
@@ -130,7 +129,7 @@ newCategoryBtn.addEventListener("click", () => {
 });
 
 addCategoryFormBtn.addEventListener("click", () => {
-    if (categoryName.value.length !== 0) {
+    if (/\w+/.test(categoryName.value)) {
         addCategoryForm.style = "display: none";
         categories.push(categoryName.value);
         renderCategories();

@@ -1,4 +1,5 @@
 let tasks = fetchTasksFromLocal() ?? [];
+let categories = fetchCategoriesFromLocal() ?? [];
 
 if (tasks.length !== 0) {
     renderTasks();
@@ -89,6 +90,55 @@ function renderTasks() {
     }
 }
 
+// Fetch Tasks from the local storage
+function fetchTasksFromLocal() {
+    let jsonTasks = window.localStorage.getItem("tasks");
+    let objectTasks = JSON.parse(jsonTasks);
+    return objectTasks;
+}
+
+// Store tasks in the Local Storage As Json
+function storeTasksInLocal() {
+    window.localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+// Add new Category
+let newCategoryBtn = document.querySelector("aside button.add-category");
+let addCategoryForm = document.querySelector(".add-category-form");
+let addCategoryFormBtn = document.querySelector(".add-category-form .content > .buttons .add");
+let cancelCategoryFormBtn = document.querySelector(".add-category-form .content > .buttons .cancel");
+let categoryName = document.getElementById("category-name");
+
+newCategoryBtn.addEventListener("click", () => {
+    addCategoryForm.style = "display: block";
+});
+
+addCategoryFormBtn.addEventListener("click", () => {
+    if (categoryName.value.length !== 0) {
+        addCategoryForm.style = "display: none";
+        categories.push(categoryName.value);
+        storeCategoriesInLocal();
+        categoryName.value = "";
+    }
+});
+
+cancelCategoryFormBtn.addEventListener("click", () => {
+    categoryName.value = "";
+    addCategoryForm.style = "display: none";
+});
+
+// Fetch Categories from the local storage
+function fetchCategoriesFromLocal() {
+    let jsonCategories = window.localStorage.getItem("categories");
+    let arrayCategories = JSON.parse(jsonCategories);
+    return arrayCategories;
+}
+
+// Store tasks in the Local Storage As Json
+function storeCategoriesInLocal() {
+    window.localStorage.setItem("categories", JSON.stringify(categories));
+}
+
 // Sidebar Toogle button 
 let mediaQuery = window.matchMedia("(max-width: 991.9px)");
 let sidebar = document.querySelector("aside");
@@ -105,15 +155,3 @@ let sidebarToggle = document.querySelector("header > div:first-of-type i");
 sidebarToggle.addEventListener("click", function () {
     sidebar.classList.toggle("hide");
 });
-
-// Fetch Tasks from the local storage
-function fetchTasksFromLocal() {
-    let jsonTasks = window.localStorage.getItem("tasks");
-    let objectTasks = JSON.parse(jsonTasks);
-    return objectTasks;
-}
-
-// Store tasks in the Local Storage As Json
-function storeTasksInLocal() {
-    window.localStorage.setItem("tasks", JSON.stringify(tasks));
-}

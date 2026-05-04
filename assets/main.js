@@ -19,19 +19,31 @@ let taskCategory = document.getElementById("task-category");
 
 newTaskBtn.addEventListener("click", () => {
     addTaskForm.style = "display: block";
+
+    // load categories to the select
+    for (const category of categories) {
+        let option = document.createElement("option");
+        option.setAttribute("value", category);
+        option.innerHTML = category;
+        console.log(option);
+        taskCategory.appendChild(option);
+    }
 });
 
 addTaskFormBtn.addEventListener("click", () => {
-    addTaskForm.style = "display: none";
-
-    tasks.unshift({id: Date.now(), name: taskName.value, category: taskCategory.value, checked: false});
-    storeTasksInLocal();
-    taskName.value = "";
-    renderTasks();
+    if (/\w+/.test(taskName.value)) {
+        addTaskForm.style = "display: none";
+        tasks.unshift({id: Date.now(), name: taskName.value, category: taskCategory.value, checked: false});
+        storeTasksInLocal();
+        taskName.value = "";
+        taskCategory.innerHTML = "";
+        renderTasks();
+    }
 });
 
 cancelTaskFormBtn.addEventListener("click", () => {
     taskName.value = "";
+    taskCategory.innerHTML = "";
     addTaskForm.style = "display: none";
 });
 

@@ -128,6 +128,9 @@ a {
     border: 0px;
     background-color: var(--grey-color);
 }
+.add-task-form .content > div > input[type="text"]:focus {
+    outline: none;
+}
 @media (max-width: 576px) {
     .add-task-form .content > div > input[type="text"] {
         margin-top: 10px;
@@ -138,9 +141,7 @@ a {
     padding: 10px 10px 10px 10px;
     border-radius: 10px;
     border: 0px;
-}
-.add-task-form .content > div > input[type="text"]:focus {
-    outline: none;
+    background-color: var(--grey-color);
 }
 .add-task-form .content .buttons {
     display: flex;

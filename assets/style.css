@@ -159,6 +159,83 @@ a {
     content: "\f057";
 }
 /* End add task window */
+/* Start add category window */
+.add-category-form {
+    display: none;
+    position: absolute;
+    background-color: rgba(190, 190, 190, 0.667);
+    backdrop-filter: blur(2px);
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+}
+.add-category-form .content {
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    padding: 15px 30px;
+    border-radius: 10px;
+}
+@media (max-width: 576px) {
+    .add-category-form .content {
+        width: 350px;
+        padding: 15px 20px;
+    }
+}
+.add-category-form .content h3 {
+    text-align: center;
+    margin: 0 0 15px 0;
+    font-size: 25px;
+}
+.add-category-form .content > div:not(:last-of-type) {
+    margin-bottom: 20px;
+}
+.add-category-form .content > div label {
+    display: inline-block;
+    width: 80px;
+    font-size: 17px;
+}
+.add-category-form .content > div > input[type="text"] {
+    padding: 10px 10px 10px 10px;
+    width: 300px;
+    border-radius: 10px;
+    border: 0px;
+    background-color: var(--grey-color);
+}
+@media (max-width: 576px) {
+    .add-category-form .content > div > input[type="text"] {
+        margin-top: 10px;
+    }
+}
+.add-category-form .content > div > select {
+    width: 150px;
+    padding: 10px 10px 10px 10px;
+    border-radius: 10px;
+    border: 0px;
+}
+.add-category-form .content > div > input[type="text"]:focus {
+    outline: none;
+}
+.add-category-form .content .buttons {
+    display: flex;
+    justify-content: center;
+    column-gap: 15px;
+}
+.add-category-form .content button {
+    display: inline-block;
+    width: 120px;
+    padding: 12px 12px 12px 30px;
+}
+.add-category-form .content button.cancel {
+    background-color: rgb(254, 82, 82);
+}
+.add-category-form .content button.cancel::before {
+    content: "\f057";
+}
+/* End add category window */
 /* End Components */
 
 /* Start Page */

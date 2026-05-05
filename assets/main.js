@@ -141,7 +141,7 @@ newCategoryBtn.addEventListener("click", () => {
 addCategoryFormBtn.addEventListener("click", () => {
     if (/\w+/.test(categoryName.value)) {
         addCategoryForm.style = "display: none";
-        categories.push(categoryName.value);
+        categories.push(categoryName.value.toLowerCase());
         renderCategories();
         storeCategoriesInLocal();
         categoryName.value = "";
@@ -173,7 +173,7 @@ function renderCategories() {
     for (let category of categories) {
         let categoryLi = document.createElement("li");
         categoryLi.classList.add("category");
-        categoryLi.textContent = category;
+        categoryLi.textContent = `${category.charAt(0).toUpperCase()}${category.slice(1)}`;
 
         // Change the current category 
 
@@ -182,13 +182,24 @@ function renderCategories() {
             let allCategories = document.querySelectorAll('aside .category');
             allCategories.forEach(categ => categ.classList.remove('active'));
             selectedCategory.classList.add('active');
-            currentCategory = selectedCategory.textContent;
+            currentCategory = selectedCategory.textContent.toLowerCase();
             renderTasks();
         });
 
         categoriesContainer.appendChild(categoryLi);
     }
 }
+
+// Change the current category when clicking on 'All Tasks'
+let allTasksCategory = document.querySelector('aside > div.category');
+
+allTasksCategory.addEventListener('click', (e) => {
+    let allCategories = document.querySelectorAll('aside .category');
+    allCategories.forEach(categ => categ.classList.remove('active'));
+    allTasksCategory.classList.add('active');
+    currentCategory = 'all';
+    renderTasks();
+});
 
 // Sidebar Toogle button 
 let mediaQuery = window.matchMedia("(max-width: 991.9px)");
@@ -205,15 +216,4 @@ mediaQuery.addEventListener("change", function (e) {
 let sidebarToggle = document.querySelector("header > div:first-of-type i");
 sidebarToggle.addEventListener("click", function () {
     sidebar.classList.toggle("hide");
-});
-
-// Change the current category when clicking on 'All Tasks'
-let allTasksCategory = document.querySelector('aside > div.category');
-
-allTasksCategory.addEventListener('click', (e) => {
-    let allCategories = document.querySelectorAll('aside .category');
-    allCategories.forEach(categ => categ.classList.remove('active'));
-    allTasksCategory.classList.add('active');
-    currentCategory = 'all';
-    renderTasks();
 });

@@ -174,6 +174,18 @@ function renderCategories() {
         let categoryLi = document.createElement("li");
         categoryLi.classList.add("category");
         categoryLi.textContent = category;
+
+        // Change the current category 
+
+        categoryLi.addEventListener('click', (e) => {
+            let selectedCategory = e.target;
+            let allCategories = document.querySelectorAll('aside .category');
+            allCategories.forEach(categ => categ.classList.remove('active'));
+            selectedCategory.classList.add('active');
+            currentCategory = selectedCategory.textContent;
+            renderTasks();
+        });
+
         categoriesContainer.appendChild(categoryLi);
     }
 }
@@ -193,4 +205,15 @@ mediaQuery.addEventListener("change", function (e) {
 let sidebarToggle = document.querySelector("header > div:first-of-type i");
 sidebarToggle.addEventListener("click", function () {
     sidebar.classList.toggle("hide");
+});
+
+// Change the current category when clicking on 'All Tasks'
+let allTasksCategory = document.querySelector('aside > div.category');
+
+allTasksCategory.addEventListener('click', (e) => {
+    let allCategories = document.querySelectorAll('aside .category');
+    allCategories.forEach(categ => categ.classList.remove('active'));
+    allTasksCategory.classList.add('active');
+    currentCategory = 'all';
+    renderTasks();
 });

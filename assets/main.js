@@ -1,6 +1,7 @@
 let tasks = fetchTasksFromLocal() ?? [];
 let categories = fetchCategoriesFromLocal() ?? [];
 let currentCategory = 'all';
+let searchedTask = '';
 
 if (tasks.length !== 0) {
     renderTasks();
@@ -60,6 +61,10 @@ function renderTasks() {
     
     if (currentCategory !== 'all') {
         tasksToRender = tasks.filter(task => task.category === currentCategory);
+    }
+
+    if (searchedTask.length !== 0) {
+        tasksToRender = tasksToRender.filter(task => task.name.toLowerCase().includes(searchedTask));
     }
 
     for (let task of tasksToRender) {
@@ -216,4 +221,13 @@ mediaQuery.addEventListener("change", function (e) {
 let sidebarToggle = document.querySelector("header > div:first-of-type i");
 sidebarToggle.addEventListener("click", function () {
     sidebar.classList.toggle("hide");
+});
+
+// Search for tasks
+let searchInput = document.querySelector('header .search input[type="search"]');
+
+searchInput.addEventListener('input', (e) => {
+    let taskToSearch = e.target.value;
+    searchedTask = taskToSearch.toLowerCase();
+    renderTasks();
 });

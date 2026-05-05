@@ -1,32 +1,50 @@
 let tasks = fetchTasksFromLocal() ?? [];
+let categories = fetchCategoriesFromLocal() ?? [];
+let currentCategory = 'all';
 
 if (tasks.length !== 0) {
     renderTasks();
 }
 
+if (categories.length !== 0) {
+    renderCategories();
+}
+
 // Add new task
 let newTaskBtn = document.querySelector("main button.new-task");
-let addTaskForm = document.querySelector(".add-form");
-let addTaskFormBtn = document.querySelector(".add-form .content > .buttons .add");
-let cancelTaskFormBtn = document.querySelector(".add-form .content > .buttons .cancel");
+let addTaskForm = document.querySelector(".add-task-form");
+let addTaskFormBtn = document.querySelector(".add-task-form .content > .buttons .add");
+let cancelTaskFormBtn = document.querySelector(".add-task-form .content > .buttons .cancel");
 let taskName = document.getElementById("task-name");
 let taskCategory = document.getElementById("task-category");
 
 newTaskBtn.addEventListener("click", () => {
     addTaskForm.style = "display: block";
+
+    // load categories to the select
+    taskCategory.innerHTML = `<option value="">---Choose a category---</option>`;
+    for (const category of categories) {
+        let option = document.createElement("option");
+        option.setAttribute("value", category);
+        option.innerHTML = category;
+        taskCategory.appendChild(option);
+    }
 });
 
 addTaskFormBtn.addEventListener("click", () => {
-    addTaskForm.style = "display: none";
-
-    tasks.unshift({id: Date.now(), name: taskName.value, category: taskCategory.value, checked: false});
-    storeTasksInLocal();
-    taskName.value = "";
-    renderTasks();
+    if (/\w+/.test(taskName.value)) {
+        addTaskForm.style = "display: none";
+        tasks.unshift({id: Date.now(), name: taskName.value, category: taskCategory.value, checked: false});
+        storeTasksInLocal();
+        taskName.value = "";
+        taskCategory.innerHTML = "";
+        renderTasks();
+    }
 });
 
 cancelTaskFormBtn.addEventListener("click", () => {
     taskName.value = "";
+    taskCategory.innerHTML = "";
     addTaskForm.style = "display: none";
 });
 
@@ -36,9 +54,15 @@ function renderTasks() {
     let completedTasks = document.querySelector("main > .tasks > .completed-tasks > .list");
 
     uncompletedTasks.innerHTML = "";
-    completedTasks.innerHTML = "";    
+    completedTasks.innerHTML = "";
 
-    for (let task of tasks) {
+    let tasksToRender = tasks;
+    
+    if (currentCategory !== 'all') {
+        tasksToRender = tasks.filter(task => task.category === currentCategory);
+    }
+
+    for (let task of tasksToRender) {
         let divContainer = document.createElement("div");
         divContainer.classList.add("task");
         divContainer.setAttribute("data-id", `${task.id}`)
@@ -75,10 +99,12 @@ function renderTasks() {
         p.textContent = task.name;
         infoDiv.appendChild(p);
         
-        let span = document.createElement("span");
-        span.classList.add("category");
-        span.textContent = task.category;
-        infoDiv.appendChild(span);
+        if (task.category.length !== 0) {
+            let span = document.createElement("span");
+            span.classList.add("category");
+            span.textContent = task.category;
+            infoDiv.appendChild(span);
+        }
 
         if (task.checked === false) {
             uncompletedTasks.appendChild(divContainer);
@@ -88,6 +114,92 @@ function renderTasks() {
         }
     }
 }
+
+// Fetch Tasks from the local storage
+function fetchTasksFromLocal() {
+    let jsonTasks = window.localStorage.getItem("tasks");
+    let objectTasks = JSON.parse(jsonTasks);
+    return objectTasks;
+}
+
+// Store tasks in the Local Storage As Json
+function storeTasksInLocal() {
+    window.localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+// Add new Category
+let newCategoryBtn = document.querySelector("aside button.add-category");
+let addCategoryForm = document.querySelector(".add-category-form");
+let addCategoryFormBtn = document.querySelector(".add-category-form .content > .buttons .add");
+let cancelCategoryFormBtn = document.querySelector(".add-category-form .content > .buttons .cancel");
+let categoryName = document.getElementById("category-name");
+
+newCategoryBtn.addEventListener("click", () => {
+    addCategoryForm.style = "display: block";
+});
+
+addCategoryFormBtn.addEventListener("click", () => {
+    if (/\w+/.test(categoryName.value)) {
+        addCategoryForm.style = "display: none";
+        categories.push(categoryName.value.toLowerCase());
+        renderCategories();
+        storeCategoriesInLocal();
+        categoryName.value = "";
+    }
+});
+
+cancelCategoryFormBtn.addEventListener("click", () => {
+    categoryName.value = "";
+    addCategoryForm.style = "display: none";
+});
+
+// Fetch Categories from the local storage
+function fetchCategoriesFromLocal() {
+    let jsonCategories = window.localStorage.getItem("categories");
+    let arrayCategories = JSON.parse(jsonCategories);
+    return arrayCategories;
+}
+
+// Store tasks in the Local Storage As Json
+function storeCategoriesInLocal() {
+    window.localStorage.setItem("categories", JSON.stringify(categories));
+}
+
+function renderCategories() {
+    let categoriesContainer = document.querySelector("aside ul.categories");
+
+    categoriesContainer.innerHTML = "";
+    
+    for (let category of categories) {
+        let categoryLi = document.createElement("li");
+        categoryLi.classList.add("category");
+        categoryLi.textContent = `${category.charAt(0).toUpperCase()}${category.slice(1)}`;
+
+        // Change the current category 
+
+        categoryLi.addEventListener('click', (e) => {
+            let selectedCategory = e.target;
+            let allCategories = document.querySelectorAll('aside .category');
+            allCategories.forEach(categ => categ.classList.remove('active'));
+            selectedCategory.classList.add('active');
+            currentCategory = selectedCategory.textContent.toLowerCase();
+            renderTasks();
+        });
+
+        categoriesContainer.appendChild(categoryLi);
+    }
+}
+
+// Change the current category when clicking on 'All Tasks'
+let allTasksCategory = document.querySelector('aside > div.category');
+
+allTasksCategory.addEventListener('click', (e) => {
+    let allCategories = document.querySelectorAll('aside .category');
+    allCategories.forEach(categ => categ.classList.remove('active'));
+    allTasksCategory.classList.add('active');
+    currentCategory = 'all';
+    renderTasks();
+});
 
 // Sidebar Toogle button 
 let mediaQuery = window.matchMedia("(max-width: 991.9px)");
@@ -105,15 +217,3 @@ let sidebarToggle = document.querySelector("header > div:first-of-type i");
 sidebarToggle.addEventListener("click", function () {
     sidebar.classList.toggle("hide");
 });
-
-// Fetch Tasks from the local storage
-function fetchTasksFromLocal() {
-    let jsonTasks = window.localStorage.getItem("tasks");
-    let objectTasks = JSON.parse(jsonTasks);
-    return objectTasks;
-}
-
-// Store tasks in the Local Storage As Json
-function storeTasksInLocal() {
-    window.localStorage.setItem("tasks", JSON.stringify(tasks));
-}

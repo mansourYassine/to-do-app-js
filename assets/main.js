@@ -115,6 +115,8 @@ function renderTasks() {
         // open edit window form
         p.addEventListener("dblclick", function (e) {
             editTaskForm.style = "display: block";
+            let taskContainer = e.target.parentElement.parentElement;
+            let taskId = taskContainer.getAttribute('data-id');
         });
         
         if (task.category.length !== 0) {

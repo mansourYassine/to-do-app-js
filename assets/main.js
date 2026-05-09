@@ -57,6 +57,44 @@ let deleteTaskEditFormBtn = document.querySelector(".edit-task-form .content > .
 let taskNameEditForm = document.getElementById("edit-task-name");
 let taskCategoryEditForm = document.getElementById("edit-task-category");
 
+// Edit task info
+editTaskFormBtn.addEventListener("click", () => {
+    if (/\w+/.test(taskNameEditForm.value)) {
+        editTaskForm.style = "display: none";
+        let taskId = editTaskForm.getAttribute("task-id");
+        let taskIndex = tasks.findIndex((task) => task.id == taskId);
+        if (taskIndex !== -1) {
+            tasks[taskIndex].name = taskNameEditForm.value;
+            tasks[taskIndex].category = taskCategoryEditForm.value;
+        }
+        storeTasksInLocal();
+        taskNameEditForm.value = "";
+        taskCategoryEditForm.innerHTML = "";
+        renderTasks();
+    }
+});
+
+deleteTaskEditFormBtn.addEventListener("click", () => {
+    editTaskForm.style = "display: none";
+    let taskId = editTaskForm.getAttribute("task-id");
+    let taskIndex = tasks.findIndex((task) => task.id == taskId);
+    if (taskIndex !== -1) {
+        tasks.splice(taskIndex, 1);
+    }
+    storeTasksInLocal();
+    taskNameEditForm.value = "";
+    taskCategoryEditForm.innerHTML = "";
+    renderTasks();
+});
+
+// cancel button
+cancelTaskEditFormBtn.addEventListener("click", () => {
+    taskNameEditForm.value = "";
+    taskCategoryEditForm.innerHTML = "";
+    editTaskForm.style = "display: none";
+});
+
+
 // Display Tasks from the array
 function renderTasks() {
     let uncompletedTasks = document.querySelector("main > .tasks > .uncompleted-tasks > .list");
@@ -112,14 +150,17 @@ function renderTasks() {
         p.textContent = task.name;
         infoDiv.appendChild(p);
 
-        // open edit window form
         p.addEventListener("dblclick", function (e) {
+            // open edit window form
             editTaskForm.style = "display: block";
             let taskContainer = e.target.parentElement.parentElement;
             let taskId = taskContainer.getAttribute('data-id');
             let choosedTask = tasks.find((task) => task.id == taskId);
 
             taskNameEditForm.value = choosedTask.name;
+
+            // Inject the task id in the edit form window
+            editTaskForm.setAttribute("task-id", taskId);
 
             // load categories to the select
             taskCategoryEditForm.innerHTML = `<option value="">---Choose a category---</option>`;

@@ -239,6 +239,64 @@ function storeCategoriesInLocal() {
     window.localStorage.setItem("categories", JSON.stringify(categories));
 }
 
+// edit categories
+// let editTaskForm = document.querySelector(".edit-task-form");
+// let editTaskFormBtn = document.querySelector(".edit-task-form .content > .buttons .edit");
+// let cancelTaskEditFormBtn = document.querySelector(".edit-task-form .content > .buttons .cancel");
+// let deleteTaskEditFormBtn = document.querySelector(".edit-task-form .content > .buttons .delete");
+// let taskNameEditForm = document.getElementById("edit-task-name");
+// let taskCategoryEditForm = document.getElementById("edit-task-category");
+
+let editCategoryForm = document.querySelector(".edit-category-form");
+let editCategoryFormBtn = document.querySelector(".edit-category-form .content > .buttons .edit");
+let deleteCategoryEditFormBtn = document.querySelector(".edit-category-form .content > .buttons .delete");
+let cancelCategoryEditFormBtn = document.querySelector(".edit-category-form .content > .buttons .cancel");
+let categoryNameEditForm = document.getElementById("edit-category-name");
+
+// Edit task info
+editCategoryFormBtn.addEventListener("click", () => {
+    if (/\w+/.test(categoryNameEditForm.value)) {
+        editCategoryForm.style = "display: none";
+        let categoryIndex = Number(editCategoryForm.getAttribute("category-id"));
+        // edit the category name in the tasks:
+        for (let task of tasks) {
+            if (task.category === categories[categoryIndex]) {
+                task.category = categoryNameEditForm.value.toLowerCase();
+            }
+        }
+        // Edit the category name in the categories
+        categories[categoryIndex] = categoryNameEditForm.value.toLowerCase();
+
+        renderTasks();
+        renderCategories();
+        storeCategoriesInLocal();
+        categoryNameEditForm.value = "";
+    }
+});
+
+deleteCategoryEditFormBtn.addEventListener("click", () => {
+    editCategoryForm.style = "display: none";
+    let categoryIndex = Number(editCategoryForm.getAttribute("category-id"));
+    // delete the category name in the tasks:
+    for (let task of tasks) {
+        if (task.category === categories[categoryIndex]) {
+            task.category = "";
+        }
+    }
+    categories.splice(categoryIndex, 1);
+    
+    renderCategories();
+    storeCategoriesInLocal();
+    renderTasks();
+    categoryNameEditForm.value = "";
+});
+
+// cancel button
+cancelCategoryEditFormBtn.addEventListener("click", () => {
+    editCategoryForm.style = "display: none";
+    categoryNameEditForm.value = "";
+});
+
 function renderCategories() {
     let categoriesContainer = document.querySelector("aside ul.categories");
 
@@ -247,6 +305,7 @@ function renderCategories() {
     for (let category of categories) {
         let categoryLi = document.createElement("li");
         categoryLi.classList.add("category");
+        categoryLi.setAttribute("category-id", categories.indexOf(category));
         categoryLi.textContent = `${category.charAt(0).toUpperCase()}${category.slice(1)}`;
 
         // Change the current category 
@@ -258,6 +317,14 @@ function renderCategories() {
             selectedCategory.classList.add('active');
             currentCategory = selectedCategory.textContent.toLowerCase();
             renderTasks();
+        });
+
+        // Display the edit category window
+        categoryLi.addEventListener("dblclick", function (e) {
+            editCategoryForm.style = "display: block";
+            editCategoryForm.setAttribute("category-id", this.getAttribute('category-id'));
+            let choosedCategory = e.target.textContent.toLowerCase();
+            categoryNameEditForm.value = choosedCategory;
         });
 
         categoriesContainer.appendChild(categoryLi);

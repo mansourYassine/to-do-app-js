@@ -117,6 +117,19 @@ function renderTasks() {
             editTaskForm.style = "display: block";
             let taskContainer = e.target.parentElement.parentElement;
             let taskId = taskContainer.getAttribute('data-id');
+            let choosedTask = tasks.find((task) => task.id == taskId);
+
+            taskNameEditForm.value = choosedTask.name;
+
+            // load categories to the select
+            taskCategoryEditForm.innerHTML = `<option value="">---Choose a category---</option>`;
+            for (const category of categories) {
+                let option = document.createElement("option");
+                option.setAttribute("value", category);
+                option.innerHTML = category;
+                taskCategoryEditForm.appendChild(option);
+            }
+            taskCategoryEditForm.value = choosedTask.category;
         });
         
         if (task.category.length !== 0) {

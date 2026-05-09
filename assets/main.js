@@ -49,6 +49,14 @@ cancelTaskFormBtn.addEventListener("click", () => {
     addTaskForm.style = "display: none";
 });
 
+// Edit Tasks
+let editTaskForm = document.querySelector(".edit-task-form");
+let editTaskFormBtn = document.querySelector(".edit-task-form .content > .buttons .edit");
+let cancelTaskEditFormBtn = document.querySelector(".edit-task-form .content > .buttons .cancel");
+let deleteTaskEditFormBtn = document.querySelector(".edit-task-form .content > .buttons .delete");
+let taskNameEditForm = document.getElementById("edit-task-name");
+let taskCategoryEditForm = document.getElementById("edit-task-category");
+
 // Display Tasks from the array
 function renderTasks() {
     let uncompletedTasks = document.querySelector("main > .tasks > .uncompleted-tasks > .list");
@@ -103,6 +111,11 @@ function renderTasks() {
         let p = document.createElement("p");
         p.textContent = task.name;
         infoDiv.appendChild(p);
+
+        // open edit window form
+        p.addEventListener("dblclick", function (e) {
+            editTaskForm.style = "display: block";
+        });
         
         if (task.category.length !== 0) {
             let span = document.createElement("span");

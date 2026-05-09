@@ -71,6 +71,7 @@ a {
     font-size: 19px;
     font-weight: 400;
     margin: 0px;
+    cursor: pointer;
 }
 .task .info span {
     display: inline-block;
@@ -157,6 +158,93 @@ a {
     background-color: rgb(254, 82, 82);
 }
 .add-task-form .content button.cancel::before {
+    content: "\f057";
+}
+/* End add task window */
+/* Start edit task window */
+.edit-task-form {
+    display: none;
+    position: absolute;
+    background-color: rgba(190, 190, 190, 0.667);
+    backdrop-filter: blur(2px);
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+}
+.edit-task-form .content {
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    padding: 15px 30px;
+    border-radius: 10px;
+}
+@media (max-width: 576px) {
+    .edit-task-form .content {
+        width: 350px;
+        padding: 15px 20px;
+    }
+}
+.edit-task-form .content h3 {
+    text-align: center;
+    margin: 0 0 15px 0;
+    font-size: 25px;
+}
+.edit-task-form .content > div:not(:last-of-type) {
+    margin-bottom: 20px;
+}
+.edit-task-form .content > div label {
+    display: inline-block;
+    width: 80px;
+    font-size: 17px;
+}
+.edit-task-form .content > div > input[type="text"] {
+    padding: 10px 10px 10px 10px;
+    width: 300px;
+    border-radius: 10px;
+    border: 0px;
+    background-color: var(--grey-color);
+}
+.edit-task-form .content > div > input[type="text"]:focus {
+    outline: none;
+}
+@media (max-width: 576px) {
+    .edit-task-form .content > div > input[type="text"] {
+        margin-top: 10px;
+    }
+}
+.edit-task-form .content > div > select {
+    width: 200px;
+    padding: 10px 10px 10px 10px;
+    border-radius: 10px;
+    border: 0px;
+    background-color: var(--grey-color);
+}
+.edit-task-form .content .buttons {
+    display: flex;
+    justify-content: center;
+    column-gap: 15px;
+}
+.edit-task-form .content button {
+    display: inline-block;
+    width: 120px;
+    padding: 12px 12px 12px 30px;
+}
+.edit-task-form .content button.cancel {
+    background-color: rgb(254, 82, 82);
+}
+.edit-task-form .content button.delete {
+    background-color: rgb(35, 125, 67);
+}
+.edit-task-form .content button.edit::before {
+    content: "\f044";
+}
+.edit-task-form .content button.delete::before {
+    content: "\f2ed";
+}
+.edit-task-form .content button.cancel::before {
     content: "\f057";
 }
 /* End add task window */
